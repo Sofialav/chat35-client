@@ -52,7 +52,7 @@ class App extends Component {
   };
   // onCreateNick = e => {
   //   e.preventDefault();
-  //   return const nickName = this.state.user
+  // return const nickName = this.state.user
   // };
   render() {
     const messages = this.props.messages.map(message => <p>{message}</p>);
@@ -67,37 +67,37 @@ class App extends Component {
             onChange={this.onChange}
             value={this.state.nick}
           ></input>
-          <button>Create</button>
-        </form>
-        {/* messages form */}
-        <form onSubmit={this.onSubmit}>
-          <input
-            name="text"
-            type="text"
-            onChange={this.onChange}
-            value={this.state.text}
-            placeholder="Your message here"
-          ></input>
-          <button>Send</button>
-        </form>
-        {/* channels form */}
-        <form onSubmit={this.onNewChannel}>
-          <input
-            name="name"
-            type="text"
-            onChange={this.onChange}
-            value={this.state.name}
-            placeholder="New channel"
-          ></input>
-          <button>Send</button>
+          <button onClick={e => e.preventDefault()}>Create</button>
         </form>
         <button onClick={this.reset}>Reset</button>
+        {/* channels form */}
         <div>
           <h3>Channels:</h3>
+          <form onSubmit={this.onNewChannel}>
+            <input
+              name="name"
+              type="text"
+              onChange={this.onChange}
+              value={this.state.name}
+              placeholder="New channel"
+            ></input>
+            <button>Send</button>
+          </form>
           {channels}
         </div>
         <div>
           <h3>Messages:</h3>
+          {/* messages form */}
+          <form onSubmit={this.onSubmit}>
+            <input
+              name="text"
+              type="text"
+              onChange={this.onChange}
+              value={this.state.text}
+              placeholder="Your message here"
+            ></input>
+            <button>Send</button>
+          </form>
           {messages}
         </div>
       </main>
