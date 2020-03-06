@@ -39,6 +39,7 @@ class App extends Component {
     this.setState({ text: "" });
   };
   render() {
+    const messages = this.props.messages.map(message => <p>{message}</p>);
     return (
       <main>
         <form onSubmit={this.onSubmit}>
@@ -51,11 +52,20 @@ class App extends Component {
           <button>Send</button>
         </form>
         <button onClick={this.reset}>Reset</button>
+        <div>
+          <h3>Messages:</h3>
+          {messages}
+        </div>
       </main>
     );
   }
 }
 
-const connector = connect();
+function mapStateToProps(state) {
+  return {
+    messages: state.messages
+  };
+}
+const connector = connect(mapStateToProps);
 const connected = connector(App);
 export default connected;
