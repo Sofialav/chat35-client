@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import superagent from "superagent";
+import { connect } from "react-redux";
 
 const url = "http://localhost:4000";
 class App extends Component {
@@ -9,8 +10,12 @@ class App extends Component {
 
   stream = new EventSource(`${url}/stream`);
   componentDidMount() {
-    this.stream.onmessage = function(event) {
+    this.stream.onmessage = event => {
+      // using parser for convert string event.data into an object
       console.log("event.data TEST", event.data);
+      const parser = JSON.parse(event.data);
+      this.props.dispatch(parser);
+      console.log("PARSED DATA", parser);
     };
   }
 
@@ -51,4 +56,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const connector = connect();
+const connected = connector(App);
+export default connected;
