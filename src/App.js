@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import superagent from "superagent";
 import { connect } from "react-redux";
 
-const url = "http://localhost:4000";
+const url = "https://sheltered-sea-69941.herokuapp.com/";
 class App extends Component {
   state = {
     text: ""
